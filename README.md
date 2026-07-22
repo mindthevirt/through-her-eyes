@@ -2,6 +2,8 @@
 
 An open-source, adjustable low-vision simulator that applies visual effects to a live camera feed. It is designed to help families, friends, designers and developers start more informed conversations about low vision.
 
+![Animated preview of Through Her Eyes showing illustrative profiles and adjustable simulation controls](public/demo.gif)
+
 This project is an educational conversation aid—not a medical device, diagnostic tool or exact reproduction of any person’s sight. A diagnosis or acuity measurement alone cannot tell us precisely what someone sees. Let the person with lived experience guide the settings and the conversation.
 
 ## Features
