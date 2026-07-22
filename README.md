@@ -2,7 +2,12 @@
 
 An open-source camera tool for talking about low vision. Families, friends, designers and developers can use it to explore visual effects and start a better conversation.
 
-![Animated preview of Through Her Eyes showing illustrative profiles and adjustable simulation controls](public/demo.gif)
+## Screenshots
+
+<p>
+  <img src="public/through-her-eyes-home.png" alt="Through Her Eyes home screen with the camera experience button" width="320" />
+  <img src="public/through-her-eyes-safety-guide.png" alt="Through Her Eyes safety guide shown before starting the camera" width="320" />
+</p>
 
 This is a conversation tool, not a medical device or diagnostic tool. It cannot reproduce exactly what any person sees. A diagnosis or an acuity measurement only tells part of the story, so let the person with low vision guide the settings and the conversation.
 
