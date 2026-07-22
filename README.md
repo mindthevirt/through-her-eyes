@@ -50,6 +50,28 @@ npm run build
 npm start
 ```
 
+## Host with Docker
+
+You need Docker and Docker Compose. From the project folder, run:
+
+```bash
+docker compose up --build -d
+```
+
+The app will be available at [http://localhost:3000](http://localhost:3000). To use another port, set `PORT` before starting it:
+
+```bash
+PORT=8080 docker compose up --build -d
+```
+
+To stop it:
+
+```bash
+docker compose down
+```
+
+For camera access on a phone or a public site, put the container behind an HTTPS-enabled domain. Browsers usually block camera access on an insecure network address.
+
 ## Using the simulator safely
 
 - Sit or stand still while using it. Do not walk while watching the filtered feed.
