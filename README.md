@@ -50,27 +50,32 @@ npm run build
 npm start
 ```
 
-## Host with Docker
+## Run the container image
 
-You need Docker and Docker Compose. From the project folder, run:
-
-```bash
-docker compose up --build -d
-```
-
-The app will be available at [http://localhost:3000](http://localhost:3000). To use another port, set `PORT` before starting it:
+GitHub Actions builds and publishes an AMD64 image whenever changes reach `main`:
 
 ```bash
-PORT=8080 docker compose up --build -d
+ghcr.io/mindthevirt/through-her-eyes:latest
 ```
 
-To stop it:
+After the first successful workflow run, you can start it anywhere Docker is available:
 
 ```bash
-docker compose down
+docker run --pull always -d \
+  --name through-her-eyes \
+  --restart unless-stopped \
+  -p 3000:3000 \
+  ghcr.io/mindthevirt/through-her-eyes:latest
 ```
 
-For camera access on a phone or a public site, put the container behind an HTTPS-enabled domain. Browsers usually block camera access on an insecure network address.
+Open [http://localhost:3000](http://localhost:3000). To stop the container:
+
+```bash
+docker stop through-her-eyes
+docker rm through-her-eyes
+```
+
+The image is built for `linux/amd64`, which is the common server architecture. For camera access on a phone or a public site, put it behind an HTTPS-enabled domain. Browsers usually block camera access on an insecure network address.
 
 ## Using the simulator safely
 
