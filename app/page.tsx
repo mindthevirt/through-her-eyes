@@ -17,7 +17,7 @@ const presets: Record<Preset, {
 }> = {
   both: {
     label: "Both eyes",
-    detail: "Illustrative blended-view profile",
+    detail: "A blended example",
     blur: 13,
     maxContrast: 58,
     maxColor: 55,
@@ -27,7 +27,7 @@ const presets: Record<Preset, {
   },
   left: {
     label: "Left eye",
-    detail: "Illustrative lower-acuity profile",
+    detail: "A lower-detail example",
     blur: 13,
     maxContrast: 58,
     maxColor: 55,
@@ -37,7 +37,7 @@ const presets: Record<Preset, {
   },
   right: {
     label: "Right eye",
-    detail: "Illustrative severe-acuity profile",
+    detail: "A very low-detail example",
     blur: 48,
     maxContrast: 34,
     maxColor: 28,
@@ -169,16 +169,16 @@ export default function Home() {
             <div className="eyemark" aria-hidden="true">
               <span />
             </div>
-            <p className="kicker">An educational low-vision simulator</p>
+            <p className="kicker">A low-vision conversation tool</p>
             <h1>Through<br />her eyes</h1>
             <p className="intro">
-              Explore adjustable approximations of central vision loss, a
-              narrowed field of view, haze and reduced contrast.
+              Use the camera to explore a rough approximation of central
+              vision loss, a narrower field of view, haze and lower contrast.
             </p>
 
             <div className="effect-chip">
               <span aria-hidden="true">●</span>
-              Central loss · narrow field · haze · low contrast
+              Central loss, narrow field, haze, low contrast
             </div>
 
             <button className="start-button" onClick={() => startCamera()}>
@@ -365,7 +365,7 @@ export default function Home() {
 
             <div className="truth-note">
               <span aria-hidden="true">i</span>
-              <p><strong>This is illustrative, not diagnostic.</strong> Real low vision varies by person, lighting, fatigue and environment. Let the person whose experience you want to understand guide the settings and tell you what feels similar—or completely wrong.</p>
+              <p><strong>This is a starting point, not a diagnosis.</strong> Low vision is different for every person and can change with lighting, fatigue and surroundings. Let the person you are trying to understand guide the settings and tell you what feels close and what does not.</p>
             </div>
 
             <button className="done-button" onClick={() => setPanelOpen(false)}>Use this view</button>
@@ -384,7 +384,7 @@ export default function Home() {
               <li><span>2</span><p><strong>Try familiar tasks.</strong> Look at a face, a food label, a remote control or objects on a table.</p></li>
               <li><span>3</span><p><strong>Let the person lead.</strong> Ask what feels similar, what feels wrong and what kind of help they actually want.</p></li>
             </ol>
-            <button className="done-button" onClick={() => { setShowGuide(false); startCamera(); }}>I’m seated — start camera</button>
+            <button className="done-button" onClick={() => { setShowGuide(false); startCamera(); }}>I'm seated. Start the camera</button>
           </section>
         </div>
       )}

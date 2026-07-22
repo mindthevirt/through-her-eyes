@@ -1,10 +1,10 @@
 # Through Her Eyes
 
-An open-source, adjustable low-vision simulator that applies visual effects to a live camera feed. It is designed to help families, friends, designers and developers start more informed conversations about low vision.
+An open-source camera tool for talking about low vision. Families, friends, designers and developers can use it to explore visual effects and start a better conversation.
 
 ![Animated preview of Through Her Eyes showing illustrative profiles and adjustable simulation controls](public/demo.gif)
 
-This project is an educational conversation aid—not a medical device, diagnostic tool or exact reproduction of any person’s sight. A diagnosis or acuity measurement alone cannot tell us precisely what someone sees. Let the person with lived experience guide the settings and the conversation.
+This is a conversation tool, not a medical device or diagnostic tool. It cannot reproduce exactly what any person sees. A diagnosis or an acuity measurement only tells part of the story, so let the person with low vision guide the settings and the conversation.
 
 ## Features
 
@@ -18,9 +18,9 @@ This project is an educational conversation aid—not a medical device, diagnost
 
 ## Privacy
 
-Camera frames stay inside the browser and are not transmitted or stored by this application. The source contains no patient records, personal diagnoses, deployment identifiers, API keys or analytics code.
+Your camera feed stays in the browser. The app does not upload or store it. The source contains no patient records, personal diagnoses, deployment identifiers, API keys or analytics code.
 
-As with any open-source project, review your hosting provider and any changes you make before deploying it publicly.
+As with any open-source project, check your hosting provider and your changes before you deploy it publicly.
 
 ## Run locally
 
