@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createCameraController } from "./camera.mjs";
 
 type Preset = "both" | "left" | "right";
 type FieldEffect = "combined" | "central" | "peripheral" | "none";
@@ -49,7 +50,8 @@ const presets: Record<Preset, {
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
+  const cameraRef = useRef<ReturnType<typeof createCameraController> | null>(null);
+  if (cameraRef.current == null) cameraRef.current = createCameraController();
   const [started, setStarted] = useState(false);
   const [cameraError, setCameraError] = useState("");
   const [facingMode, setFacingMode] = useState<"environment" | "user">(
@@ -66,39 +68,35 @@ export default function Home() {
   const [showGuide, setShowGuide] = useState(false);
   const [holdingNormal, setHoldingNormal] = useState(false);
 
-  const stopCamera = () => {
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-    streamRef.current = null;
-  };
-
   const startCamera = async (nextFacing = facingMode) => {
     setCameraError("");
-    stopCamera();
+    const camera = cameraRef.current!;
 
     if (!navigator.mediaDevices?.getUserMedia) {
+      camera.stop();
+      setStarted(false);
       setCameraError(
         "This browser cannot open the camera. Try Safari on an iPhone over a secure connection.",
       );
       return;
     }
 
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
+    const result = await camera.start(
+      () => navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: { ideal: nextFacing },
           width: { ideal: 1920 },
           height: { ideal: 1080 },
         },
         audio: false,
-      });
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
+      }),
+      () => videoRef.current,
+    );
+    if (result.status === "started") {
       setStarted(true);
-    } catch (error) {
-      const name = error instanceof DOMException ? error.name : "";
+    } else if (result.status === "failed") {
+      setStarted(false);
+      const name = result.error instanceof DOMException ? result.error.name : "";
       setCameraError(
         name === "NotAllowedError"
           ? "Camera access was blocked. Allow Camera for this site in Safari settings, then try again."
@@ -117,7 +115,10 @@ export default function Home() {
     setPreset((current) => (current === "left" ? "right" : "left"));
   };
 
-  useEffect(() => () => stopCamera(), []);
+  useEffect(() => {
+    const camera = cameraRef.current!;
+    return () => camera.stop();
+  }, []);
 
   const activeStrength = holdingNormal ? 0 : strength / 100;
   const activePreset = presets[preset];
@@ -384,7 +385,7 @@ export default function Home() {
               <li><span>2</span><p><strong>Try familiar tasks.</strong> Look at a face, a food label, a remote control or objects on a table.</p></li>
               <li><span>3</span><p><strong>Let the person lead.</strong> Ask what feels similar, what feels wrong and what kind of help they actually want.</p></li>
             </ol>
-            <button className="done-button" onClick={() => { setShowGuide(false); startCamera(); }}>I'm seated. Start the camera</button>
+            <button className="done-button" onClick={() => { setShowGuide(false); startCamera(); }}>I&apos;m seated. Start the camera</button>
           </section>
         </div>
       )}
